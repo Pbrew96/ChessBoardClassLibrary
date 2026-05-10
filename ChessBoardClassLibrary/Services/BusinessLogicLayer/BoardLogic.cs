@@ -11,6 +11,12 @@ namespace ChessBoardClassLibrary.Services.BusinessLogicLayer;
 
 public class BoardLogic
 {
+    /// <summary>
+    /// Resets the board by clearing all legal move markers
+    /// and removing piece indicators from each cell
+    /// </summary>
+    /// <param name="board"></param>
+    /// <returns></returns>
     private BoardModel ResetBoard(BoardModel board)
     {
         // Use a foreach loop to iterate over every cell
@@ -24,7 +30,14 @@ public class BoardLogic
 
         return board;
     }
-
+/// <summary>
+/// Determines whether the specified row and column
+/// exist within the boundaries of the chess board
+/// </summary>
+/// <param name="board"></param>
+/// <param name="row"></param>
+/// <param name="col"></param>
+/// <returns></returns>
     private bool IsOnBoard(BoardModel board, int row, int col)
     {
         //Get the size of the board
@@ -36,7 +49,14 @@ public class BoardLogic
         //Return true if both row and column are safe
         return IsRowSafe && IsColumnSafe;
     }
-
+/// <summary>
+/// Determines and marks the legal moves for the selected
+/// chess piece based on its current position
+/// </summary>
+/// <param name="board"></param>
+/// <param name="currentCell"></param>
+/// <param name="chessPiece"></param>
+/// <returns></returns>
     public BoardModel MarkLegalMoves(BoardModel board, CellModel currentCell, string chessPiece)
     {
         //Reset the board
@@ -73,7 +93,12 @@ public class BoardLogic
 
         return board;
     } //End of MarkLegal Moves Method
-
+/// <summary>
+/// Marks all valid knight moves from current position
+/// </summary>
+/// <param name="board"></param>
+/// <param name="currentCell"></param>
+/// <returns></returns>
     private BoardModel MarkValidKnightMoves(BoardModel board, CellModel currentCell)
     {
         // Set the occupying property for the current cell
@@ -96,6 +121,12 @@ public class BoardLogic
 
         return board;
     }
+/// <summary>
+/// Marks all valid rook moves from the current position.
+/// </summary>
+/// <param name="board"></param>
+/// <param name="currentCell"></param>
+/// <returns></returns>
     private BoardModel MarkValidRookMoves(BoardModel board, CellModel currentCell)
     {
         for (int row = 0; row < board.Size; row++)
@@ -116,6 +147,12 @@ public class BoardLogic
 
         return board;
     }
+/// <summary>
+/// Marks all valid Bishop moves from current position
+/// </summary>
+/// <param name="board"></param>
+/// <param name="currentCell"></param>
+/// <returns></returns>
     private BoardModel MarkValidBishopMoves(BoardModel board, CellModel currentCell)
     {
         int[] rowDirections = { -1, -1, 1, 1 };
@@ -137,6 +174,12 @@ public class BoardLogic
 
         return board;
     }
+/// <summary>
+/// Marks valid queen moves from current position
+/// </summary>
+/// <param name="board"></param>
+/// <param name="currentCell"></param>
+/// <returns></returns>
     private BoardModel MarkValidQueenMoves(BoardModel board, CellModel currentCell)
     {
         
@@ -145,6 +188,12 @@ public class BoardLogic
 
         return board;
     }
+/// <summary>
+/// Marks valid king moves from current position
+/// </summary>
+/// <param name="board"></param>
+/// <param name="currentCell"></param>
+/// <returns></returns>
     private BoardModel MarkValidKingMoves(BoardModel board, CellModel currentCell)
     {
         // Possible king moves
