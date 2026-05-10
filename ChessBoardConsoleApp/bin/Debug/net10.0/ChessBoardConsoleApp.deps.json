@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v10.0": {
       "ChessBoardConsoleApp/1.0.0": {
+        "dependencies": {
+          "ChessBoardClassLibrary": "1.0.0"
+        },
         "runtime": {
           "ChessBoardConsoleApp.dll": {}
+        }
+      },
+      "ChessBoardClassLibrary/1.0.0": {
+        "runtime": {
+          "ChessBoardClassLibrary.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "ChessBoardConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ChessBoardClassLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
