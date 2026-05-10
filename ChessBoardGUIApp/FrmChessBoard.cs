@@ -74,8 +74,12 @@ namespace ChessBoardGUIApp
                     // Add the button to the panels controls
                     pnlChessBoard.Controls.Add(_buttons[row, col]);
 
+                    
+
                 }
             }
+            cmbColorTheme.SelectedItem = "Default";
+            ApplyColorTheme();
 
         } //End of SetUpButtons method
 
@@ -91,7 +95,13 @@ namespace ChessBoardGUIApp
             Point point = (Point)button.Tag;
             int row = point.X;
             int col = point.Y;
-            string piece = cmbChessPieces.Text;
+
+            if (cmbChessPieces.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a chess piece first.");
+                return;
+            }
+            string piece = cmbChessPieces.Text.Trim();
 
             // Show the user their choice
             MessageBox.Show($"You clicked on row {row} and column {col}");
@@ -151,5 +161,60 @@ namespace ChessBoardGUIApp
                 }
             }
         } // End of UpdateButtons method
+
+        private void ApplyColorTheme()
+        {
+            Color colorOne = Color.White;
+            Color colorTwo = Color.Gray;
+
+            string theme = cmbColorTheme.Text.Trim();
+
+            if (theme == "Warm")
+            {
+                colorOne = Color.LightSalmon;
+                colorTwo = Color.OrangeRed;
+            }
+            else if (theme == "Cool")
+            {
+                colorOne = Color.LightBlue;
+                colorTwo = Color.DarkBlue;
+            }
+            else if (theme == "Pastel")
+            {
+                colorOne = Color.LightPink;
+                colorTwo = Color.LightGreen;
+            }
+            else if (theme == "Neon")
+            {
+                colorOne = Color.Lime;
+                colorTwo = Color.Magenta;
+            }
+            else if (theme == "Default")
+            {
+                colorOne = Color.White;
+                colorTwo = Color.Gray;
+            }
+
+            for (int row = 0; row < _board.Size; row++)
+            {
+                for (int col = 0; col < _board.Size; col++)
+                {
+                    if ((row + col) % 2 == 0)
+                    {
+                        _buttons[row, col].BackColor = colorOne;
+                    }
+                    else
+                    {
+                        _buttons[row, col].BackColor = colorTwo;
+                    }
+                }
+            }
+        }
+
+        private void cmbColorTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyColorTheme();
+
+        }
     }
 }

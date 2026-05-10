@@ -32,6 +32,8 @@
             label1 = new Label();
             label2 = new Label();
             pnlChessBoard = new Panel();
+            cmbColorTheme = new ComboBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // cmbChessPieces
@@ -68,11 +70,32 @@
             pnlChessBoard.Size = new Size(500, 500);
             pnlChessBoard.TabIndex = 3;
             // 
+            // cmbColorTheme
+            // 
+            cmbColorTheme.FormattingEnabled = true;
+            cmbColorTheme.Items.AddRange(new object[] { "Default", "Warm", "Cool", "Pastel", "Neon" });
+            cmbColorTheme.Location = new Point(667, 70);
+            cmbColorTheme.Name = "cmbColorTheme";
+            cmbColorTheme.Size = new Size(121, 23);
+            cmbColorTheme.TabIndex = 0;
+            cmbColorTheme.SelectedIndexChanged += cmbColorTheme_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(583, 73);
+            label3.Name = "label3";
+            label3.Size = new Size(78, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Select Theme";
+            // 
             // FrmChessBoard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 595);
+            Controls.Add(label3);
+            Controls.Add(cmbColorTheme);
             Controls.Add(pnlChessBoard);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -89,5 +112,7 @@
         private Label label1;
         private Label label2;
         private Panel pnlChessBoard;
+        private ComboBox cmbColorTheme;
+        private Label label3;
     }
 }
