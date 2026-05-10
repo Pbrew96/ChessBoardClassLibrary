@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChessBoardConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4af69f9aa867c6b0a989b76f82eaa00db1069198")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b981cdb48f8b1dcbfe8252ee41c4c991236d33f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChessBoardConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChessBoardConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

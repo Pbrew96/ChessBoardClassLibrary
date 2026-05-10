@@ -25,10 +25,25 @@ BoardModel board = new BoardModel(8);
 // Show the empty board
 Utility.PrintBoard(board);
 // Prompt the user for the type of chess piece
-Console.Write("Enter the type of piece you want to place (Knight, Rook, Bishop, Queen, King): ");
-piece = Console.ReadLine();
+while (true)
+{
+    Console.Write("Enter the type of piece you want to place (Knight, Rook, Bishop, Queen, King): ");
+    piece = Console.ReadLine();
+
+    if (piece != null &&
+        (piece.ToLower() == "knight" ||
+         piece.ToLower() == "rook" ||
+         piece.ToLower() == "bishop" ||
+         piece.ToLower() == "queen" ||
+         piece.ToLower() == "king"))
+    {
+        break;
+    }
+
+    Console.WriteLine("Invalid piece. Please enter Knight, Rook, Bishop, Queen, or King.");
+}
 // Prompt the user for the location of the chess piece
-result = Utility.GetRowAndCol();
+result = Utility.GetRowAndCol(board);
 // Mark the legal moves based on the input
 board = boardLogic.MarkLegalMoves(board, board.Grid[result.Item1, result.Item2], piece);
 // Print out the new chess board
@@ -43,50 +58,109 @@ Utility.PrintBoard(board);
 
 public static class Utility
 {
+    /// <summary>
+    /// Displays the current state of the chess board
+    /// including chess pieces and legal moves
+    /// </summary>
+    /// <param name="board"></param>
     internal static void PrintBoard(BoardModel board)
     {
-        //Loop over the rows of the board
+        // Print column headers
+        Console.Write("   ");
+
+        for (int col = 0; col < board.Size; col++)
+        {
+            Console.Write($" {col}  ");
+        }
+
+        Console.WriteLine();
+
+        // Loop over the rows of the board
         for (int row = 0; row < board.Size; row++)
         {
-            //Loop over the columns of the board
+            // Print the top border for each row
+            Console.Write("  ");
+
             for (int col = 0; col < board.Size; col++)
             {
-                //Get the current cell from the grid
+                Console.Write("+---");
+            }
+
+            Console.WriteLine("+");
+
+            // Print the row number
+            Console.Write($"{row} ");
+
+            // Loop over the columns of the board
+            for (int col = 0; col < board.Size; col++)
+            {
                 CellModel cell = board.Grid[row, col];
-                //Check if the current cell is a legal move
+
+                string displayValue = ".";
+
                 if (cell.IsLegalNextMove)
                 {
-                    //Print a + for a legal move
-                    Console.Write(" + ");
+                    displayValue = "+";
                 }
-                //Check if there is a piece occupying the cell
                 else if (cell.PieceOccupyingCell != "")
                 {
-                    // Print the chess piece letter
-                    Console.Write($" {cell.PieceOccupyingCell} ");
+                    displayValue = cell.PieceOccupyingCell;
                 }
-                else
-                {
-                    //Print a . for anything else
-                    Console.Write(" . ");
-                }
-            }
-            //Start a new line after every row
-            Console.WriteLine();
-        }
-    } //End of PrintBoard method
 
-    internal static Tuple<int, int> GetRowAndCol()
+                Console.Write($"| {displayValue} ");
+            }
+
+            Console.WriteLine("|");
+        }
+
+        // Print the bottom border
+        Console.Write("  ");
+
+        for (int col = 0; col < board.Size; col++)
+        {
+            Console.Write("+---");
+        }
+
+        Console.WriteLine("+");
+    }
+/// <summary>
+/// Prompts the user to enter a valid row and column
+/// position for placing a chess piece on the board
+/// </summary>
+/// <param name="board">The chess board used for bounds checking</param>
+/// <returns></returns>
+    internal static Tuple<int, int> GetRowAndCol(BoardModel board)
     {
-        //Get the row from the user
-        Console.Write("Enter the row number of the piece: ");
-        int row = int.Parse(Console.ReadLine());
-        
-        //Get the column from the user
-        Console.Write("Enter the column number of the piece: ");
-        int col = int.Parse(Console.ReadLine());
-        
-        //Return the data
+        int row;
+        int col;
+
+        // Get the row from the user
+        while (true)
+        {
+            Console.Write("Enter the row number of the piece: ");
+
+            if (int.TryParse(Console.ReadLine(), out row) && row >= 0 && row < board.Size)
+            {
+                break;
+            }
+
+            Console.WriteLine($"Invalid row. Enter a number between 0 and {board.Size - 1}.");
+        }
+
+        // Get the column from the user
+        while (true)
+        {
+            Console.Write("Enter the column number of the piece: ");
+
+            if (int.TryParse(Console.ReadLine(), out col) && col >= 0 && col < board.Size)
+            {
+                break;
+            }
+
+            Console.WriteLine($"Invalid column. Enter a number between 0 and {board.Size - 1}.");
+        }
+
+        // Return the data
         return Tuple.Create(row, col);
     }
 }
