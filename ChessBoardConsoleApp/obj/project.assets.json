@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "ChessBoardClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/ChessBoardClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessBoardClassLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ChessBoardClassLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ChessBoardClassLibrary/ChessBoardClassLibrary.csproj",
+      "msbuildProject": "../ChessBoardClassLibrary/ChessBoardClassLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "ChessBoardClassLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/Users/patrick/.nuget/packages/": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardClassLibrary/ChessBoardClassLibrary.csproj",
-      "projectName": "ChessBoardClassLibrary",
-      "projectPath": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardClassLibrary/ChessBoardClassLibrary.csproj",
+      "projectUniqueName": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardConsoleApp/ChessBoardConsoleApp.csproj",
+      "projectName": "ChessBoardConsoleApp",
+      "projectPath": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardConsoleApp/ChessBoardConsoleApp.csproj",
       "packagesPath": "/Users/patrick/.nuget/packages/",
-      "outputPath": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardClassLibrary/obj/",
+      "outputPath": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardConsoleApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/patrick/.nuget/NuGet/NuGet.Config"
@@ -31,7 +50,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardClassLibrary/ChessBoardClassLibrary.csproj": {
+              "projectPath": "/Users/patrick/CST250/Milestone/ChessBoardClassLibrary/ChessBoardClassLibrary/ChessBoardClassLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
