@@ -79,6 +79,7 @@ public class BoardLogic
                 board = MarkValidBishopMoves(board, currentCell);
                 break;
             case "queen":
+                board.Grid[currentCell.Row, currentCell.Column].PieceOccupyingCell = "Q";
                 board = MarkValidRookMoves(board, currentCell);
                 board = MarkValidBishopMoves(board, currentCell);
                 break;
